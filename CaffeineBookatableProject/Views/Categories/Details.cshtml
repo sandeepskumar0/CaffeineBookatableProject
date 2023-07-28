@@ -1,0 +1,27 @@
+﻿@model CaffeineBookatableProject.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Category</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cat_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cat_Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Cat_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+ </div>

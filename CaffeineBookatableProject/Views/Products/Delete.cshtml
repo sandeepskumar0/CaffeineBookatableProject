@@ -1,0 +1,74 @@
+﻿@model CaffeineBookatableProject.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Prod_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prod_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prod_Disc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prod_Disc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Purchase_Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Purchase_Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sale_Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sale_Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prod_Pic)
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Model.Prod_Pic)" width="50px" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Cat_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.Cat_Name)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+ </div>

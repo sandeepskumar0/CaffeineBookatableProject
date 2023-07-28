@@ -1,0 +1,117 @@
+﻿@using CaffeineBookatableProject.Models
+@{
+    int row = 0; int totalQuantity = 0; double totalAmount = 0;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner_page_head">
+    <div class="container_fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Add to Cart</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br />>
+<section class="ftco-section ftco-cart mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart_list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>image &nbsp;</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Remove &nbsp;</th>
+                            </tr>
+                        </thead>
+                        @if (Session["myCart"] != null)
+                        {
+                            <tbody>
+                                @foreach (var item in (List<Product>)Session["myCart"])
+                                {
+                                    <tr class="text-center">
+                                        <td class="image-prod">
+                                            <img src="@Url.Content(@item.Prod_Pic)" width="80px" />
+                                        </td>
+
+                                        <td class="product-name">
+                                            <h3>@item.Prod_Name</h3>
+                                            <p>@item.Prod_Disc</p>
+                                        </td>
+                                        <td class="price">@item.Sale_Price</td>
+
+                                        <td class="quantity">
+                                            <b>
+                                                <a href="@Url.Action("PlusToCart","Home" , new {RowNo=row})"><span class="fa fa-plus"></span></a>
+                                                @item.PRO_QUANTITY
+                                                <a href="@Url.Action("MinusFromCart","Home" , new {RowNo=row})"><span class="fa fa-minus"></span></a>
+                                            </b>
+                                        </td>
+
+                                        <td class="total">
+                                            @(double.Parse(item.Sale_Price.ToString()) * int.Parse(item.PRO_QUANTITY.ToString()))
+                                        </td>
+                                        <td class="product-remove">
+                                            <a type="button" class="close text-center" href="@Url.Action("RemoveFromCart","Home", new {RowNo=row})">
+                                                <span>&times;</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    row++;
+                                    totalQuantity += item.PRO_QUANTITY;
+                                    totalAmount += double.Parse(item.Sale_Price.ToString()) * int.Parse(item.PRO_QUANTITY.ToString());
+                                }
+
+
+                                <tr class="text-center">
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>@totalQuantity</th>
+                                    <th>@totalAmount</th>
+                                </tr>
+
+
+
+                            </tbody>
+
+
+                        }
+                    </table>
+                    @if (Session["myCart"] == null || row == 0)
+                    {
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 ">
+                                        <h5 style="color:dimgrey">your  cart is empty</h5>
+                                        <a href="@Url.Action("Products","Home")"><span class="btn btn-outline-danger">Buy Now</span></a>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    }
+                <div class="container" style="text-align:right">
+                    <h4><strong>Cart Totals</strong></h4>
+                    <h6>Total Quantity : @totalQuantity</h6>
+                    </th>
+                    <h6>Total :<span style="color:forestgreen">@totalAmount </span> </h6>
+                    <th></th>
+                    <br />
+                    <a href="@Url.Action("paynow","Home")" class="btn btn-outline-danger py-3 px-4">Proceed to Checkout</a>
+                    <a href="@Url.Action("Products","Home")" class="btn btn-outline-dark py-3 px-4">Continue Shopping</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,74 @@
+﻿@model CaffeineBookatableProject.Models.OutletModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- inner page section -->
+<section class="inner_page_head">
+    <div class="container_fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Dine Out</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end inner page section -->
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Our <span>Outlets</span>
+            </h2>
+        </div>
+
+        <div class="container">
+            @foreach (var c in Model.br)
+            {
+
+
+
+                <a href="@Url.Action("Outlets", "Home", new {id=c.branch_id })" class="btn btn-outline-danger"> @c.branch_name</a>
+            }
+        </div>
+        <div class="row">
+            @foreach (var o in Model.Out)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="box">
+                        <div class="option_container">
+                            <div class="options">
+                                <a href="" class="option1">
+                                    @o.outlet_name
+                                </a>
+                                <a href="@Url.Action("reservation", "Home", new { id = o.outlet_id})" class="option2">
+                                    Book A Table
+                                </a>
+                            </div>
+                        </div>
+                        <div class="img-box rounded" style="background-color:aliceblue">
+                            <img class="rounded" src="@Url.Content(o.outlet_pic)" height="200px;" width="180px; " />;
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                @o.outlet_disc
+                            </h5>
+                            <h6>
+                                @o.outlet_location
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+        <div class="btn-box">
+            <a href="@Url.Action("Index","Home")">
+                Back to Home
+            </a>
+        </div>
+    </div>
+</section>

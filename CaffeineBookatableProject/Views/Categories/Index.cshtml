@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CaffeineBookatableProject.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <center><h4 style="font-family:'Times New Roman', Times, serif">Categories List</h4></center><hr /><br />
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cat_Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cat_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Cat_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Cat_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Cat_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,66 @@
+﻿@model CaffeineBookatableProject.Models.Outlet
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Outlet</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_disc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_disc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_pic)
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Model.outlet_pic)" width="50px" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Branch.branch_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Branch.branch_name)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>

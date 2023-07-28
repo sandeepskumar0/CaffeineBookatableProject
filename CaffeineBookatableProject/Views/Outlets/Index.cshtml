@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CaffeineBookatableProject.Models.Outlet>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.outlet_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.outlet_disc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.outlet_location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.outlet_pic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch.branch_name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.outlet_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.outlet_disc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.outlet_location)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.outlet_pic)" width="50px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.branch_name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.outlet_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.outlet_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.outlet_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

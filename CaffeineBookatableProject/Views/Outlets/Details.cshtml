@@ -1,0 +1,59 @@
+﻿@model CaffeineBookatableProject.Models.Outlet
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Outlet</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_disc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_disc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.outlet_location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_location)
+            </dd>
+
+            <dt>
+                <img src="@Url.Content(Model.outlet_pic)" width="50px" />
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.outlet_pic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Branch.branch_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Branch.branch_name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.outlet_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+   </div>

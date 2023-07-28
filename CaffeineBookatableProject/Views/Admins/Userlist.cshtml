@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CaffeineBookatableProject.Models.Customer>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<center><h4 style="font-family:'Times New Roman', Times, serif">Users List</h4></center><hr /><br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Address)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>
