@@ -56,6 +56,9 @@
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
+    <Reference Include="Razorpay, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Razorpay.3.0.2\lib\net45\Razorpay.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,19 +137,35 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
+    <Compile Include="Controllers\CarrersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\contactsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DinetablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OutletsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Models\Branch.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carrer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contact.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dinetable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orderdetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Outlet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OutletModel.cs" />
-    <Compile Include="Models\reserve.cs">
+    <Compile Include="Models\Payment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="OnlineBookingEntities..cs" />
@@ -157,12 +176,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\order.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\orderdetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductModel.cs" />
@@ -470,9 +483,48 @@
     <Content Include="Content\Customer\js\custom.js" />
     <Content Include="Content\Customer\js\jquery-3.4.1.min.js" />
     <Content Include="Content\Customer\js\popper.min.js" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\style.css" />
+    <Content Include="dashboard\css\bootstrap.min.css" />
+    <Content Include="dashboard\css\style.css" />
+    <Content Include="dashboard\img\abt.jpg" />
+    <Content Include="dashboard\img\banner.jpg" />
+    <Content Include="dashboard\img\bg.jpg" />
+    <Content Include="dashboard\img\cake-1.jpg" />
+    <Content Include="dashboard\img\cake-2.jpg" />
+    <Content Include="dashboard\img\cake-3.jpg" />
+    <Content Include="dashboard\img\hero.jpg" />
+    <Content Include="dashboard\img\offer.jpg" />
+    <Content Include="dashboard\img\service.jpg" />
+    <Content Include="dashboard\img\team-1.jpg" />
+    <Content Include="dashboard\img\team-2.jpg" />
+    <Content Include="dashboard\img\team-3.jpg" />
+    <Content Include="dashboard\img\testimonial-1.jpg" />
+    <Content Include="dashboard\img\testimonial-2.jpg" />
+    <Content Include="dashboard\img\testimonial-3.jpg" />
+    <Content Include="dashboard\img\testimonial-4.jpg" />
+    <Content Include="dashboard\js\main.js" />
+    <Content Include="dashboard\lib\counterup\counterup.min.js" />
+    <Content Include="dashboard\lib\easing\easing.js" />
+    <Content Include="dashboard\lib\easing\easing.min.js" />
+    <Content Include="dashboard\lib\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="dashboard\lib\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="dashboard\lib\owlcarousel\owl.carousel.js" />
+    <Content Include="dashboard\lib\owlcarousel\owl.carousel.min.js" />
+    <Content Include="dashboard\lib\waypoints\waypoints.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\5copy.jpg" />
+    <Content Include="images\aa.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -611,6 +663,95 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="dashboard\lib\owlcarousel\LICENSE" />
+    <Content Include="dashboard\lib\waypoints\links.php" />
+    <Content Include="dashboard\scss\bootstrap.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\bootstrap-utilities.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\bootstrap.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_floating-labels.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_form-check.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_form-control.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_form-range.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_form-select.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_form-text.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_input-group.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_labels.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\forms\_validation.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_clearfix.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_colored-links.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_position.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_ratio.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_stretched-link.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_text-truncation.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\helpers\_visually-hidden.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_color-scheme.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_container.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_table-variants.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_utilities.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\mixins\_visually-hidden.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\utilities\_api.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\vendor\_rfs.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_accordion.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_alert.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_badge.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_button-group.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_buttons.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_card.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_carousel.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_close.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_containers.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_dropdown.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_forms.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_functions.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_grid.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_helpers.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_images.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_list-group.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_mixins.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_modal.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_nav.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_navbar.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_offcanvas.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_pagination.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_popover.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_progress.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_reboot.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_root.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_spinners.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_tables.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_toasts.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_tooltip.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_transitions.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_type.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_utilities.scss" />
+    <Content Include="dashboard\scss\bootstrap\scss\_variables.scss" />
     <None Include="Models\Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Models\Scripts\jquery-3.4.1.js" />
     <Content Include="Models\Scripts\jquery-3.4.1.min.js" />
@@ -623,6 +764,8 @@
     <Content Include="Models\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Models\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Models\Scripts\modernizr-2.8.3.js" />
+    <Content Include="mycontact\assets\css\font-awesome.css" />
+    <Content Include="mycontact\assets\css\style.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -631,6 +774,11 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="mycontact\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="mycontact\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="mycontact\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="mycontact\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="mycontact\assets\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -709,7 +857,31 @@
     <Content Include="Views\Outlets\Edit.cshtml" />
     <Content Include="Views\Outlets\Index.cshtml" />
     <Content Include="Views\Home\Outlets.cshtml" />
-    <Content Include="Views\Home\reservation.cshtml" />
+    <Content Include="Views\Dinetables\Create.cshtml" />
+    <Content Include="Views\Dinetables\Delete.cshtml" />
+    <Content Include="Views\Dinetables\Details.cshtml" />
+    <Content Include="Views\Dinetables\Edit.cshtml" />
+    <Content Include="Views\Dinetables\Index.cshtml" />
+    <Content Include="Views\Home\Wishlist.cshtml" />
+    <Content Include="Views\contacts\Create.cshtml" />
+    <Content Include="Views\contacts\Delete.cshtml" />
+    <Content Include="Views\contacts\Details.cshtml" />
+    <Content Include="Views\contacts\Edit.cshtml" />
+    <Content Include="Views\contacts\Index.cshtml" />
+    <Content Include="Views\Carrers\Create.cshtml" />
+    <Content Include="Views\Carrers\Delete.cshtml" />
+    <Content Include="Views\Carrers\Details.cshtml" />
+    <Content Include="Views\Carrers\Edit.cshtml" />
+    <Content Include="Views\Carrers\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\PaymentPage.cshtml" />
+    <Content Include="Views\Payment\Success.cshtml" />
+    <Content Include="Views\Payment\Failed.cshtml" />
+    <Content Include="Views\Home\userdash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

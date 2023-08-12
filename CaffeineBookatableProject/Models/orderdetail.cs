@@ -21,7 +21,6 @@ namespace CaffeineBookatableProject.Models
         public decimal pp_price { get; set; }
         public Nullable<int> quantity { get; set; }
     
-        public virtual order order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

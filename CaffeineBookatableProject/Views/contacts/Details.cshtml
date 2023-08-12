@@ -1,0 +1,51 @@
+﻿@model CaffeineBookatableProject.Models.contact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.person_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.person_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.person_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.person_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.person_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.person_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messages)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.person_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

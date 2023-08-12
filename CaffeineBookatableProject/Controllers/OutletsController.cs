@@ -17,7 +17,7 @@ namespace CaffeineBookatableProject.Controllers
         // GET: Outlets
         public ActionResult Index()
         {
-            var outlets = db.Outlets.Include(o => o.Branch);
+            var outlets = db.Outlets.Include(o => o.Branch);https://localhost:44308/Models/Product.cs
             return View(outlets.ToList());
         }
 
@@ -50,20 +50,12 @@ namespace CaffeineBookatableProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Outlet outlet)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Outlets.Add(outlet);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            //ViewBag.branch_fid = new SelectList(db.Branches, "branch_id", "branch_name", outlet.branch_fid);
-            //return View(outlet);
+            
             if (ModelState.IsValid)
             {
 
                 outlet.outle_pic.SaveAs(Server.MapPath("~/OutPic/" + outlet.outle_pic.FileName));
-               
+                //product.Prod_Pic = "~/ProPic/" + product.Pro_Pic.FileName;
                 if (outlet.outle_pic.FileName != "")
                 {
                     outlet.outlet_pic = "~/OutPic/" + outlet.outle_pic.FileName;

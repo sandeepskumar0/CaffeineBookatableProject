@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <style>
+        ..inner_page_head {
+            background-color: forestgreen
+        }
+    </style>
+</head>
+<body>
+
+
+    <section class="inner_page_head">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Order Confimed</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr />
+    <center>
+        <h2 style="color:dimgray"> Thank You ! Your Payment is Successfully done ..</h2>
+        <a href="@Url.Action("Index","Home")" class="btn btn-outline-dark">Go Back </a>
+    </center>
+    <hr />
+</body>
+</html>

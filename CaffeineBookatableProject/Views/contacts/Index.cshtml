@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CaffeineBookatableProject.Models.contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<h2>Contact List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.person_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.person_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.person_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.messages)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.person_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.person_phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.person_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.messages)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.person_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.person_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.person_id })
+            </td>
+        </tr>
+    }
+
+</table>

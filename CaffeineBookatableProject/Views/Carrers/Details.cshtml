@@ -1,0 +1,51 @@
+﻿@model CaffeineBookatableProject.Models.Carrer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carrer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.carrer_designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrer_designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carrer_qualfication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrer_qualfication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.career_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.career_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.send_resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.send_resume)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.career_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -4,43 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="31347501f63a443f81195cc428c2750a" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="OnlineBookingModel.Admin" Width="1.5" PointX="15.625" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Customer" Width="1.5" PointX="3.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Category" Width="1.5" PointX="5.75" PointY="1.25" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Product" Width="1.5" PointX="8.875" PointY="0.875" />
+      <Diagram DiagramId="31347501f63a443f81195cc428c2750a" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="OnlineBookingModel.Admin" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Customer" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Category" Width="1.5" PointX="0.75" PointY="15.375" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Product" Width="1.5" PointX="3" PointY="14.75" />
         <AssociationConnector Association="OnlineBookingModel.FK_Product_Category" />
-        <EntityTypeShape EntityType="OnlineBookingModel.order" Width="1.5" PointX="10" PointY="5.125" />
-        <EntityTypeShape EntityType="OnlineBookingModel.orderdetail" Width="1.5" PointX="12.25" PointY="1" />
-        <AssociationConnector Association="OnlineBookingModel.FK_order_Customer" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.46875" PointY="3.4994921875" />
-          <ConnectorPoint PointX="4.46875" PointY="7.0836393229166656" />
-          <ConnectorPoint PointX="6.7458906239096326" PointY="7.0836393229166648" />
-          <ConnectorPoint PointX="6.9125572905762986" PointY="7.0836393229166656" />
-          <ConnectorPoint PointX="10" PointY="7.0836393229166656" />
-        </AssociationConnector>
-        <AssociationConnector Association="OnlineBookingModel.FK_orderdetails_order" />
-        <AssociationConnector Association="OnlineBookingModel.FK_orderdetails_Product" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Branch" Width="1.5" PointX="0.5" PointY="4.625" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Outlet" Width="1.5" PointX="2.75" PointY="4.25" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Branch" Width="1.5" PointX="1.5" PointY="11.875" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Outlet" Width="1.5" PointX="0.75" PointY="8.375" />
         <AssociationConnector Association="OnlineBookingModel.FK_Outlet_Branch" />
-        <EntityTypeShape EntityType="OnlineBookingModel.reserve" Width="1.5" PointX="10.75" PointY="8.5" />
-        <AssociationConnector Association="OnlineBookingModel.FK__reserve__cus_fid__6383C8BA" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.5781275" PointY="3.4994921875" />
-          <ConnectorPoint PointX="4.5781275" PointY="4.24597501515332" />
-          <ConnectorPoint PointX="6.8292239572429656" PointY="4.24597501515332" />
-          <ConnectorPoint PointX="6.8292239572429656" PointY="10.354247262369789" />
-          <ConnectorPoint PointX="10.75" PointY="10.354247262369789" />
-        </AssociationConnector>
-        <AssociationConnector Association="OnlineBookingModel.FK__reserve__out_fid__6477ECF3" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.5" PointY="6.8071907552083326" />
-          <ConnectorPoint PointX="3.5" PointY="8.36866952053468" />
-          <ConnectorPoint PointX="6.7458906239096326" PointY="8.36866952053468" />
-          <ConnectorPoint PointX="6.9125572905762986" PointY="8.36866952053468" />
-          <ConnectorPoint PointX="8.3575" PointY="8.36866952053468" />
-          <ConnectorPoint PointX="8.3575" PointY="9.2041959049479232" />
-          <ConnectorPoint PointX="10.75" PointY="9.2041959049479232" />
-        </AssociationConnector>
+        <EntityTypeShape EntityType="OnlineBookingModel.Carrer" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="OnlineBookingModel.contact" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Dinetable" Width="1.5" PointX="3" PointY="1.5" />
+        <AssociationConnector Association="OnlineBookingModel.FK_Dinetable_Outlet" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Payment" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="OnlineBookingModel.orderdetail" Width="1.5" PointX="5.25" PointY="14.875" />
+        <AssociationConnector Association="OnlineBookingModel.FK_orderdetails_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

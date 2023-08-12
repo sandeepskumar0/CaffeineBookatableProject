@@ -11,11 +11,16 @@ namespace CaffeineBookatableProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Admin
     {
         public int Admin_Id { get; set; }
+        [Required(ErrorMessage ="Admin Email Required")]
+        [EmailAddress(ErrorMessage ="Invalid Email")]
         public string Admin_Email { get; set; }
+        [Required(ErrorMessage = "Admin Password Required")]
+        [EmailAddress(ErrorMessage = "Invalid Password")]
         public string Admin_Password { get; set; }
     }
 }

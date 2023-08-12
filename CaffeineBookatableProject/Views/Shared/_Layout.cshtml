@@ -11,7 +11,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="~/Content/Customer/images/favicon.png" type="">
+    <link rel="shortcut icon" href="~/Content/Customer/images/download.png" type="">
     <title>Caffeine Bookatable</title>
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="~/Content/Customer/css/bootstrap.css" />
@@ -22,8 +22,77 @@
     <link href="~/Content/Customer/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="~/Content/Customer/css/responsive.css" rel="stylesheet" />
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .nav ul li {
+            padding: 0 10px 0 10px;
+        }
+
+        .button {
+            padding: 0 10px 0 10px;
+        }
+    </style>
 </head>
 <body>
+    @if (Session["ID"] != null)
+    {
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <!-- Container wrapper -->
+            <div class="container">
+                <!-- Navbar brand -->
+                
+
+                <!-- Toggle button -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarButtonsExample"
+                        aria-controls="navbarButtonsExample"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <marquee width = "1600px">  <p class="font-secondary text-danger mb-3" >Welcome to our caffeine world ! We offer a delicious variety of coffee roasted in house made by our professionally trained baristas. We have everything from classic coffee to our house made specialty beverages. ...</p> </marquee>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+
+                    <div class="d-flex align-items-center">
+                        @*<button type="button" class="btn  btn-info me-3">
+                           Outlets
+                        </button>*@
+                        @*<button type="button" class="btn btn-light me-3">
+                            Carrers 
+                        </button>*@
+                        @*<a class="btn btn-dark px-3"
+                           href="https://github.com/mdbootstrap/mdb-ui-kit"
+                           role="button">
+                            <i class="fab fa-github"></i>
+                        </a>*@
+                    </div>
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+
+    }
     <div class="hero_area">
         <!-- header section strats -->
         <header class="header_section">
@@ -47,13 +116,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Products","Home")">Products</a>
+                                @if (Session["ID"] != null)
+                                {
+                                    <a class="nav-link" href="@Url.Action("Products", "Home")">Products</a>
+                                }
+                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index","Carrers")">Carrers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("blog","Home")">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
+                                <a class="nav-link" href="@Url.Action("Create","contacts")">Contact</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Cart","Home")">
@@ -111,11 +183,17 @@
                               </svg>
                                 </a>
                             </li>
-                            <form class="form-inline">
-                                @*<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>*@
-                            </form>
+                            @*<form class="form-inline">
+                                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                    
+                                </button>
+                            </form>*@
+                        <li class="nav-item">
+                            @if (Session["ID"] != null)
+                            {
+                                <a class="nav-link" href="@Url.Action("Wishlist", "Home")">Wishlist</a>
+                            }
+                            </li>
 
                             @*<li class="nav-item">
             <a class="nav-link btn btn-outline-danger" href="@Url.Action("LogIn","Customers")">Register</a>
@@ -124,7 +202,11 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Log In <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="nav-link btn btn-outline-danger" href=@Url.Action("LogIn","Admins")>Admin</a></li>
+                                    <li>
+                                       
+                                            <a class="nav-link btn btn-outline-danger" href=@Url.Action("LogIn", "Admins")>Admin</a>
+                                        
+                                        </li>
                                     <li><a class="nav-link btn btn-outline-danger" href=@Url.Action("LogIn","Customers")>Users</a></li>
                                 </ul>
                             </li>
@@ -132,7 +214,7 @@
                                 @if (Session["ID"] != null)
                                 {
                                     <a class="nav-link" href="@Url.Action("Outlets","Home")">Dineout</a>
-                                    
+
                                 }
                             </li>
                             <li class="nav-item">
@@ -178,12 +260,12 @@
                                         <div class="widget_menu">
                                             <h3>Menu</h3>
                                             <ul>
-                                                <li><a href="#">Home</a></li>
+                                                <li><a href="@Url.Action("Index","Home")">Home</a></li>
                                                 <li><a href="#">About</a></li>
-                                                <li><a href="#">Services</a></li>
-                                                <li><a href="#">Testimonial</a></li>
-                                                <li><a href="#">Blog</a></li>
-                                                <li><a href="#">Contact</a></li>
+                                                <li><a href="@Url.Action("blog","Home")">Blog</a></li>
+                                                <li><a href="@Url.Action("Index","Carrers")">Carrers</a></li>
+                                                <li><a href="#">Complaint</a></li>
+                                                <li><a href="@Url.Action("Create","contacts")">Contact</a></li>
                                             </ul>
                                         </div>
                                     </div>

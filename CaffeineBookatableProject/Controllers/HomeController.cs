@@ -22,7 +22,7 @@ namespace CaffeineBookatableProject.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(Dinetable dinetable)
         {
             
 
@@ -34,12 +34,17 @@ namespace CaffeineBookatableProject.Controllers
 
             return View();
         }
+        public ActionResult userdash()
+        {
+            return View();  
+        }
         public ActionResult testimonial()
         {
 
 
             return View();
         }
+       
         public ActionResult Products(int? id)
         {
 
@@ -135,46 +140,80 @@ namespace CaffeineBookatableProject.Controllers
             return RedirectToAction("cart");
         }
 
-        public ActionResult paynow()
-        {
-            if (Session["ID"] !=null)
-            {
-                order o = new order();
-                o.order_status = "paid";
-                o.order_date = DateTime.Now;
-                o.cus_fid = (int)Session["CID"];
-                Session["Order"] = o;
-                return Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sandeep@cafebrew.com&item_name=CaffeineBookatableProject&return=https://localhost:44308/Home/OrderBooked&amount=" + double.Parse(Session["totalAmountS"].ToString()) / 220);
-            }
-            else
-            {
-                return RedirectToAction("LogIn", "Customers");
-            }
-        }
+        //public ActionResult PaymentWithPaypal()
+        //{
+        //    if (Session["ID"] !=null)
+        //    {
+        //        order o = new order();
+        //        o.order_status = "paid";
+        //        o.order_date = DateTime.Now;
+        //        o.cus_fid = (int)Session["CID"];
+        //        Session["Order"] = o;
+        //        return Redirect("https://www.sandbox.paypal.com/cgi-%20bin/webscr?cmd=_xclick&amount=200&business=sandeepskumar0798@gmail.com&item_na%20me=CAFEBREW&return=https://localhost:44308/Home/OrderBooked&amount=" + double.Parse(Session["totalAmountS"].ToString()) / 220);
 
-        public ActionResult OrderBooked()
-        {
-            order o = (order)Session["Order"];
-            Customer customer = (Customer)Session["CIDD"];
-            db.Order.Add(o);
-            db.SaveChanges();
-            List<Product> p = (List<Product>)Session["myCart"];
-            for (int i=0; i< p.Count; i++)
-            {
-                orderdetail od = new orderdetail();
-                int orderID = db.Order.Max(x => x.order_id);
-                od.order_fid = orderID;
-                od.product_fid = p[i].Prod_Id;
-                od.quantity = p[i].PRO_QUANTITY * -1;
-                od.pp_price = Convert.ToDecimal(p[i].Purchase_Price);
-                od.psale_price = Convert.ToDecimal(p[i].Sale_Price);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("LogIn", "Customers");
+        //    }
+        //}
 
-                db.Orderdetails.Add(od);
-                db.SaveChanges();
-            }
+        //public ActionResult OrderBooked()
+        //{
+        //    order o = (order)Session["Order"];
+        //    Customer customer = (Customer)Session["CIDD"];
+        //    db.Order.Add(o);
+        //    db.SaveChanges();
+        //    List<Product> p = (List<Product>)Session["myCart"];
+        //    for (int i=0; i< p.Count; i++)
+        //    {
+        //        orderdetail od = new orderdetail();
+        //        int orderID = db.Order.Max(x => x.order_id);
+        //        od.order_fid = orderID;
+        //        od.product_fid = p[i].Prod_Id;
+        //        od.quantity = p[i].PRO_QUANTITY * -1;
+        //        od.pp_price = Convert.ToDecimal(p[i].Purchase_Price);
+        //        od.psale_price = Convert.ToDecimal(p[i].Sale_Price);
+
+        //        db.Orderdetails.Add(od);
+        //        db.SaveChanges();
+        //    }
+
+
+        //    return View();
+        //}
+
+        public ActionResult Wishlist()
+        {
 
 
             return View();
         }
+        public ActionResult AddtoWish(int id)
+        {
+
+            List<Product> list;
+            if (Session["myWish"] == null)
+            {
+                list = new List<Product>();
+            }
+            else
+            {
+                list = (List<Product>)Session["myWish"];
+            }
+            list.Add(db.Products.Where(p => p.Prod_Id == id).FirstOrDefault());
+            
+
+            Session["myWish"] = list;
+            return RedirectToAction("Wishlist");
+        }
+        public ActionResult RemoveFromWish(int RowNo)
+        {
+            List<Product> list = (List<Product>)Session["myWish"];
+            list.RemoveAt(RowNo);
+            Session["myWish"] = list;
+            return RedirectToAction("Wishlist");
+        }
+
     }
 }

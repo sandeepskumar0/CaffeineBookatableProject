@@ -1,0 +1,86 @@
+﻿@model CaffeineBookatableProject.Models.contact
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Free Contact Form :: W3layouts</title>
+    <link rel="stylesheet" href="~/mycontact/assets/css/style.css">
+    <link rel="stylesheet" href="~/mycontact/assets/css/font-awesome.css">
+    <link href="~/mycontact/assets/css/style.css" rel="stylesheet" />
+    <link href="~/mycontact/assets/css/font-awesome.css" rel="stylesheet" />
+    <a href="~/mycontact/assets/fonts/fontawesome-webfont.eot"></a>
+</head>
+
+<body>
+    <section class="inner_page_head">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>Contact Us</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <!-- contacts -->
+        <section class="w3l-contact-7">
+            <div class="contacts-9 section-gap">
+                <div class="wrapper">
+                    <div class="top-map">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2895687731!2d-74.26055986835598!3d40.697668402590374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1562582305883!5m2!1sen!2sin"
+                                    frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                        </div>
+
+
+                        <div class="map-content-9">
+                            <div class="cont-details">
+                                <h5>Contact Info</h5>
+
+                                <address>
+                                    <p><span class="fa fa-map-marker"></span>158 Avenues Street Kerala, IND-90814 </p>
+                                    <p> <a href="mailto:cafebre@gmail.com"><span class="fa fa-envelope"></span>cafebrew@gmail.com</a></p>
+                                    <p><span class="fa fa-phone"></span><a href="#">+91-9400370000</a></p>
+                                </address>
+
+                            </div>
+                            <form action="https://sendmail.w3layouts.com/submitForm" method="post">
+
+                                <input type="text" name="person_name" placeholder="Name" required="">
+                                @Html.ValidationMessageFor(model => model.person_name, "", new { @class = "text-danger" })
+                                <input type="number" name="person_phone" placeholder="phone" required="">
+                                @Html.ValidationMessageFor(model => model.person_phone, "", new { @class = "text-danger" })
+                                <input type="email" name="person_email" placeholder="Email" required="">
+                                @Html.ValidationMessageFor(model => model.person_email, "", new { @class = "text-danger" })
+                                <textarea name="messages" placeholder="Message" required=""></textarea>
+                                @Html.ValidationMessageFor(model => model.messages, "", new { @class = "text-danger" })
+                                <button type="submit" class="btn btn-contact">Send</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>  
+
+        </section>
+        <!-- //contacts -->
+    }
+</body>
+
+</html>

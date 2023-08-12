@@ -11,27 +11,21 @@ namespace CaffeineBookatableProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Customer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
-        {
-            this.orders = new HashSet<order>();
-            this.reserves = new HashSet<reserve>();
-        }
-    
         public int Customer_Id { get; set; }
+
         public string Customer_FirstName { get; set; }
         public string Customer_LastName { get; set; }
         public string Customer_Email { get; set; }
+        [Required(ErrorMessage = " User Email is Required")]
+        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Customer_Password { get; set; }
+        [Required(ErrorMessage = " User Password is Required")]
+        [EmailAddress(ErrorMessage = "Invalid Password")]
         public string Customer_Contact { get; set; }
         public string Customer_Address { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<reserve> reserves { get; set; }
     }
 }

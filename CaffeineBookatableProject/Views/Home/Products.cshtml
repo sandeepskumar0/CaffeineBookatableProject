@@ -43,25 +43,31 @@
                     <div class="box">
                         <div class="option_container">
                             <div class="options">
+                                <a href="@Url.Action("AddtoWish", "Home", new { id = p.Prod_Id })" class="option2">
+                                    Wishlist
+                                </a>
                                 <a href="" class="option1">
                                     @p.Prod_Name
                                 </a>
                                 <a href="@Url.Action("AddToCart", "Home", new { id = p.Prod_Id })" class="option2">
                                     Buy Now
                                 </a>
+
                             </div>
                         </div>
                         <div class="img-box rounded" style="background-color:aliceblue">
-                            <img class="rounded"src="@Url.Content(p.Prod_Pic)" height="200px;" width="180px; " />;
+                            <img class="rounded" src="@Url.Content(p.Prod_Pic)" height="200px;" width="180px; " />;
                         </div>
                         <div class="detail-box">
-                            <h5>
+                            <p>
                                 @p.Prod_Disc
-                            </h5>
-                            <h6>
-                                @p.Sale_Price
-                            </h6>
+                            </p>
+                            <p style="color:forestgreen">
+                                ₹@p.Sale_Price
+                            </p>
+
                         </div>
+                        
                     </div>
                 </div>
             }

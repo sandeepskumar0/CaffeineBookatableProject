@@ -11,6 +11,7 @@ namespace CaffeineBookatableProject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
 
     public partial class Product
@@ -22,14 +23,23 @@ namespace CaffeineBookatableProject.Models
         }
     
         public int Prod_Id { get; set; }
+        [Required(ErrorMessage ="Enter  Product Name")]
+
         public string Prod_Name { get; set; }
+        [Required(ErrorMessage = "Enter  Product Description")]
         public string Prod_Disc { get; set; }
+        [Required(ErrorMessage = "Enter  Purchase Price")]
         public string Purchase_Price { get; set; }
+        [Required(ErrorMessage = "Enter  Sale Price")]
         public string Sale_Price { get; set; }
+        [Required(ErrorMessage = "Enter  Product Pic")]
         public string Prod_Pic { get; set; }
-        public int Cat_Fid { get; set; }
+        [Required(ErrorMessage = "Enter  Product Pic")]
         public HttpPostedFileBase Pro_Pic { get; set; }
-        public int PRO_QUANTITY {  get; set; }
+        [Required(ErrorMessage = "Enter  Product Category")]
+        public int Cat_Fid { get; set; }
+
+        public int PRO_QUANTITY { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderdetail> orderdetails { get; set; }

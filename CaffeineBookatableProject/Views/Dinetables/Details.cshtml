@@ -1,0 +1,66 @@
+﻿@model CaffeineBookatableProject.Models.Dinetable
+
+@{
+    Layout = " ~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Dinetable</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Person_Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Person_Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Person_Number)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Person_Number)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Dine_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Dine_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Dine_Time)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Dine_Time)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Outlet.outlet_name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Outlet.outlet_name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Dine_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

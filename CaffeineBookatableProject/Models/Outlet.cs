@@ -18,7 +18,7 @@ namespace CaffeineBookatableProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Outlet()
         {
-            this.reserves = new HashSet<reserve>();
+            this.Dinetables = new HashSet<Dinetable>();
         }
     
         public int outlet_id { get; set; }
@@ -31,6 +31,6 @@ namespace CaffeineBookatableProject.Models
     
         public virtual Branch Branch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<reserve> reserves { get; set; }
+        public virtual ICollection<Dinetable> Dinetables { get; set; }
     }
 }

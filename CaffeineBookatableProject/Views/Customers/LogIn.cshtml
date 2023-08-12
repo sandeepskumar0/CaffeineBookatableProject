@@ -1,31 +1,93 @@
-﻿@model IEnumerable<CaffeineBookatableProject.Models.Customer>
+﻿@*@model IEnumerable<CaffeineBookatableProject.Models.Customer>
+    @{
+
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @using (Html.BeginForm("LogIn", "Customers"))
+    {
+        @Html.AntiForgeryToken()
+
+            <form>
+                <center>
+                    <h4>Sign In</h4>
+                </center>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Customer_Email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="Customer_Password">
+        </div>
+
+        <button type="submit" class="btn btn-danger" value="Log In">Log In</button>
+        <div>
+            @Html.ActionLink("if you are not a user Signup ", "Signup")
+        </div>
+        </form>
+
+    }*@
+@model IEnumerable<CaffeineBookatableProject.Models.Customer>
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*@{
 
-@using (Html.BeginForm("LogIn", "Customers"))
-{
-    @Html.AntiForgeryToken()
-    
-        <form>
-            <center>
-                <h4>Sign In</h4>
-            </center>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Customer_Email">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="Customer_Password">
-    </div>
+    Layout = null;
+}*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    @*<title>Winter Login Form a Simple Login form Responsive Widget :: w3layouts</title>*@
+    <meta name="keywords" content="Winter Login Form Responsive widget, Flat Web Templates, Android Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="~/css/font-awesome.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- google fonts  -->
+    <link href="~/fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="~/fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="~/fonts/fontawesome-webfont.eot" rel="stylesheet">
 
-    <button type="submit" class="btn btn-danger" value="Log In">Log In</button>
-    <div>
-        @Html.ActionLink("if you are not a user Signup ", "Signup")
-    </div>
-    </form>
 
-}
+</head>
+<body>
+    @using (Html.BeginForm("LogIn", "Customers"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="agile-login">
+            @*<h1> Login Form</h1>*@
+            <div class="wrapper">
+                <h2>Sign In</h2>
+                <div class="w3ls-form">
+                    <form action="/" method="post">
+                        <label>Username</label>
+                        <input type="text" name="Customer_Email" placeholder="Username" required />
+                        <label>Password</label>
+                        <input type="text" name="Customer_Password" placeholder="Password" required />
+                        <a href="@Url.Action("Signup","Customers")" class="pass">Signup ?</a>
+                        <input type="submit" value="Log In" />
+                    </form>
+                </div>
+
+                <div class="agile-icons">
+                    <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                    <a href="#"><span class="fa fa-facebook"></span></a>
+                    <a href="#"><span class="fa fa-pinterest-p"></span></a>
+                </div>
+            </div>
+            <br>
+            <div class="copyright">
+                <p>© 2023 Cafe Brew Login. All rights reserved | Design by <a href="www.w3layouts.com">Cafe Brew Project</a></p>
+            </div>
+        </div>
+    }
+</body>
+</html>

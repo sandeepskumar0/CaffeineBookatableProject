@@ -1,66 +1,60 @@
-﻿@{
+﻿@model CaffeineBookatableProject.Models.contact
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- inner page section -->
-<section class="inner_page_head">
-    <div class="container_fuild">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full">
-                    <h3>Contact us</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end inner page section -->
-<!-- why section -->
-<section class="why_section layout_padding">
-    <div class="container">
+@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <div class="full">
-                    <form action="index.html">
-                        <fieldset>
-                            <input type="text" placeholder="Enter your full name" name="name" required />
-                            <input type="email" placeholder="Enter your email address" name="email" required />
-                            <input type="text" placeholder="Enter subject" name="subject" required />
-                            <textarea placeholder="Enter your message" required></textarea>
-                            <input type="submit" value="Submit" />
-                        </fieldset>
-                    </form>
+        <div class="form-horizontal">
+            <h4>contact</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.person_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.person_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.person_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.person_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.person_phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.person_phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.person_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.person_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.person_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.messages, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.messages, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.messages, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-</section>
-<!-- end why section -->
-<!-- arrival section -->
-<section class="arrival_section">
-    <div class="container">
-        <div class="box">
-            <div class="arrival_bg_box">
-                <img src="~/Content/Customer/images/arrival-bg.png" alt="">
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto">
-                    <div class="heading_container remove_line_bt">
-                        <h2>
-                            #NewArrivals
-                        </h2>
-                    </div>
-                    <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-                    </p>
-                    <a href="">
-                        Shop Now
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end arrival section -->

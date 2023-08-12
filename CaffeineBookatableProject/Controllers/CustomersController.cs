@@ -37,7 +37,7 @@ namespace CaffeineBookatableProject.Controllers
             {
                 Session["ID"] = cust;
                 //Response.Write("<script>alert('Invalid Username/Password'); </script>");
-                return RedirectToAction("Cart", "Home");
+                return RedirectToAction("userdash", "Home");
             }
             else
             {
@@ -49,7 +49,7 @@ namespace CaffeineBookatableProject.Controllers
         public ActionResult Logout()
         {
             Session["ID"] = null;
-            return RedirectToAction("LogIn", "Customers");
+            return RedirectToAction("Index", "Home");
         }
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

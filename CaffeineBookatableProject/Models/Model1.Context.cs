@@ -29,10 +29,12 @@ namespace CaffeineBookatableProject.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<orderdetail> orderdetails { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Outlet> Outlets { get; set; }
-        public virtual DbSet<reserve> reserves { get; set; }
+        public virtual DbSet<Carrer> Carrers { get; set; }
+        public virtual DbSet<contact> contacts { get; set; }
+        public virtual DbSet<Dinetable> Dinetables { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<orderdetail> orderdetails { get; set; }
     }
 }

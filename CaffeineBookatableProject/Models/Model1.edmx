@@ -20,12 +20,32 @@
           <Property Name="branch_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="branch_name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Carrer">
+          <Key>
+            <PropertyRef Name="career_id" />
+          </Key>
+          <Property Name="career_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carrer_designation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="carrer_qualfication" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="career_description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="send_resume" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Cat_Id" />
           </Key>
           <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cat_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="person_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="person_phone" Type="int" Nullable="false" />
+          <Property Name="person_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="messages" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -39,14 +59,16 @@
           <Property Name="Customer_Contact" Type="nvarchar" MaxLength="50" />
           <Property Name="Customer_Address" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="order">
+        <EntityType Name="Dinetable">
           <Key>
-            <PropertyRef Name="order_id" />
+            <PropertyRef Name="Dine_Id" />
           </Key>
-          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="order_date" Type="datetime" Nullable="false" />
-          <Property Name="order_status" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="cus_fid" Type="int" Nullable="false" />
+          <Property Name="Dine_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Person_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Person_Number" Type="int" Nullable="false" />
+          <Property Name="Dine_Date" Type="date" Nullable="false" />
+          <Property Name="Dine_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Outlet_Bid" Type="int" />
         </EntityType>
         <EntityType Name="orderdetails">
           <Key>
@@ -70,6 +92,17 @@
           <Property Name="outlet_pic" Type="nvarchar" MaxLength="100" />
           <Property Name="branch_fid" Type="int" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="receiptid" />
+          </Key>
+          <Property Name="receiptid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contactNumber" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Prod_Id" />
@@ -82,64 +115,15 @@
           <Property Name="Prod_Pic" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Cat_Fid" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="reserve">
-          <Key>
-            <PropertyRef Name="reserve_id" />
-          </Key>
-          <Property Name="reserve_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cus_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="cus_phone" Type="int" Nullable="false" />
-          <Property Name="reserve_date" Type="date" Nullable="false" />
-          <Property Name="reserve_time" Type="time" Precision="7" Nullable="false" />
-          <Property Name="persons_count" Type="int" Nullable="false" />
-          <Property Name="cus_fid" Type="int" Nullable="false" />
-          <Property Name="out_fid" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__reserve__cus_fid__6383C8BA">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="reserve" Type="Self.reserve" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Customer_Id" />
-            </Principal>
-            <Dependent Role="reserve">
-              <PropertyRef Name="cus_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__reserve__out_fid__6477ECF3">
-          <End Role="Outlet" Type="Self.Outlet" Multiplicity="1" />
-          <End Role="reserve" Type="Self.reserve" Multiplicity="*" />
+        <Association Name="FK_Dinetable_Outlet">
+          <End Role="Outlet" Type="Self.Outlet" Multiplicity="0..1" />
+          <End Role="Dinetable" Type="Self.Dinetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Outlet">
               <PropertyRef Name="outlet_id" />
             </Principal>
-            <Dependent Role="reserve">
-              <PropertyRef Name="out_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Customer_Id" />
-            </Principal>
-            <Dependent Role="order">
-              <PropertyRef Name="cus_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_orderdetails_order">
-          <End Role="order" Type="Self.order" Multiplicity="1" />
-          <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="order">
-              <PropertyRef Name="order_id" />
-            </Principal>
-            <Dependent Role="orderdetails">
-              <PropertyRef Name="order_fid" />
+            <Dependent Role="Dinetable">
+              <PropertyRef Name="Outlet_Bid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,28 +166,18 @@
         <EntityContainer Name="OnlineBookingModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrer" EntityType="Self.Carrer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dinetable" EntityType="Self.Dinetable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Outlet" EntityType="Self.Outlet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="reserve" EntityType="Self.reserve" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__reserve__cus_fid__6383C8BA" Association="Self.FK__reserve__cus_fid__6383C8BA">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="reserve" EntitySet="reserve" />
-          </AssociationSet>
-          <AssociationSet Name="FK__reserve__out_fid__6477ECF3" Association="Self.FK__reserve__out_fid__6477ECF3">
+          <AssociationSet Name="FK_Dinetable_Outlet" Association="Self.FK_Dinetable_Outlet">
             <End Role="Outlet" EntitySet="Outlet" />
-            <End Role="reserve" EntitySet="reserve" />
-          </AssociationSet>
-          <AssociationSet Name="FK_order_Customer" Association="Self.FK_order_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="order" EntitySet="order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_orderdetails_order" Association="Self.FK_orderdetails_order">
-            <End Role="order" EntitySet="order" />
-            <End Role="orderdetails" EntitySet="orderdetails" />
+            <End Role="Dinetable" EntitySet="Dinetable" />
           </AssociationSet>
           <AssociationSet Name="FK_orderdetails_Product" Association="Self.FK_orderdetails_Product">
             <End Role="Product" EntitySet="Product" />
@@ -241,8 +215,6 @@
           <Property Name="Customer_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Customer_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="orders" Relationship="OnlineBookingModel.FK_order_Customer" FromRole="Customer" ToRole="order" />
-          <NavigationProperty Name="reserves" Relationship="OnlineBookingModel.FK__reserve__cus_fid__6383C8BA" FromRole="Customer" ToRole="reserve" />
         </EntityType>
         <EntityContainer Name="OnlineBookingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="OnlineBookingModel.Admin" />
@@ -253,34 +225,24 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <EntitySet Name="orders" EntityType="OnlineBookingModel.order" />
-          <EntitySet Name="orderdetails" EntityType="OnlineBookingModel.orderdetail" />
-          <AssociationSet Name="FK_order_Customer" Association="OnlineBookingModel.FK_order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="order" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_orderdetails_order" Association="OnlineBookingModel.FK_orderdetails_order">
-            <End Role="order" EntitySet="orders" />
-            <End Role="orderdetail" EntitySet="orderdetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_orderdetails_Product" Association="OnlineBookingModel.FK_orderdetails_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="orderdetail" EntitySet="orderdetails" />
-          </AssociationSet>
           <EntitySet Name="Branches" EntityType="OnlineBookingModel.Branch" />
           <EntitySet Name="Outlets" EntityType="OnlineBookingModel.Outlet" />
           <AssociationSet Name="FK_Outlet_Branch" Association="OnlineBookingModel.FK_Outlet_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Outlet" EntitySet="Outlets" />
           </AssociationSet>
-          <EntitySet Name="reserves" EntityType="OnlineBookingModel.reserve" />
-          <AssociationSet Name="FK__reserve__cus_fid__6383C8BA" Association="OnlineBookingModel.FK__reserve__cus_fid__6383C8BA">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="reserve" EntitySet="reserves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__reserve__out_fid__6477ECF3" Association="OnlineBookingModel.FK__reserve__out_fid__6477ECF3">
+          <EntitySet Name="Carrers" EntityType="OnlineBookingModel.Carrer" />
+          <EntitySet Name="contacts" EntityType="OnlineBookingModel.contact" />
+          <EntitySet Name="Dinetables" EntityType="OnlineBookingModel.Dinetable" />
+          <AssociationSet Name="FK_Dinetable_Outlet" Association="OnlineBookingModel.FK_Dinetable_Outlet">
             <End Role="Outlet" EntitySet="Outlets" />
-            <End Role="reserve" EntitySet="reserves" />
+            <End Role="Dinetable" EntitySet="Dinetables" />
+          </AssociationSet>
+          <EntitySet Name="Payments" EntityType="OnlineBookingModel.Payment" />
+          <EntitySet Name="orderdetails" EntityType="OnlineBookingModel.orderdetail" />
+          <AssociationSet Name="FK_orderdetails_Product" Association="OnlineBookingModel.FK_orderdetails_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="orderdetail" EntitySet="orderdetails" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
@@ -317,66 +279,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="order">
-          <Key>
-            <PropertyRef Name="order_id" />
-          </Key>
-          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="order_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cus_fid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="OnlineBookingModel.FK_order_Customer" FromRole="order" ToRole="Customer" />
-          <NavigationProperty Name="orderdetails" Relationship="OnlineBookingModel.FK_orderdetails_order" FromRole="order" ToRole="orderdetail" />
-        </EntityType>
-        <EntityType Name="orderdetail">
-          <Key>
-            <PropertyRef Name="orderdetail_id" />
-          </Key>
-          <Property Name="orderdetail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="order_fid" Type="Int32" Nullable="false" />
-          <Property Name="product_fid" Type="Int32" Nullable="false" />
-          <Property Name="psale_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="pp_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="order" Relationship="OnlineBookingModel.FK_orderdetails_order" FromRole="orderdetail" ToRole="order" />
-          <NavigationProperty Name="Product" Relationship="OnlineBookingModel.FK_orderdetails_Product" FromRole="orderdetail" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_order_Customer">
-          <End Type="OnlineBookingModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="OnlineBookingModel.order" Role="order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Customer_Id" />
-            </Principal>
-            <Dependent Role="order">
-              <PropertyRef Name="cus_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_orderdetails_order">
-          <End Type="OnlineBookingModel.order" Role="order" Multiplicity="1" />
-          <End Type="OnlineBookingModel.orderdetail" Role="orderdetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="order">
-              <PropertyRef Name="order_id" />
-            </Principal>
-            <Dependent Role="orderdetail">
-              <PropertyRef Name="order_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_orderdetails_Product">
-          <End Type="OnlineBookingModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="OnlineBookingModel.orderdetail" Role="orderdetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Prod_Id" />
-            </Principal>
-            <Dependent Role="orderdetail">
-              <PropertyRef Name="product_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="branch_id" />
@@ -396,7 +298,7 @@
           <Property Name="outlet_pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="branch_fid" Type="Int32" />
           <NavigationProperty Name="Branch" Relationship="OnlineBookingModel.FK_Outlet_Branch" FromRole="Outlet" ToRole="Branch" />
-          <NavigationProperty Name="reserves" Relationship="OnlineBookingModel.FK__reserve__out_fid__6477ECF3" FromRole="Outlet" ToRole="reserve" />
+          <NavigationProperty Name="Dinetables" Relationship="OnlineBookingModel.FK_Dinetable_Outlet" FromRole="Outlet" ToRole="Dinetable" />
         </EntityType>
         <Association Name="FK_Outlet_Branch">
           <End Type="OnlineBookingModel.Branch" Role="Branch" Multiplicity="0..1" />
@@ -410,42 +312,82 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="reserve">
+        <EntityType Name="Carrer">
           <Key>
-            <PropertyRef Name="reserve_id" />
+            <PropertyRef Name="career_id" />
           </Key>
-          <Property Name="reserve_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cus_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cus_phone" Type="Int32" Nullable="false" />
-          <Property Name="reserve_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="reserve_time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="persons_count" Type="Int32" Nullable="false" />
-          <Property Name="cus_fid" Type="Int32" Nullable="false" />
-          <Property Name="out_fid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="OnlineBookingModel.FK__reserve__cus_fid__6383C8BA" FromRole="reserve" ToRole="Customer" />
-          <NavigationProperty Name="Outlet" Relationship="OnlineBookingModel.FK__reserve__out_fid__6477ECF3" FromRole="reserve" ToRole="Outlet" />
+          <Property Name="career_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carrer_designation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="carrer_qualfication" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="career_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="send_resume" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK__reserve__cus_fid__6383C8BA">
-          <End Type="OnlineBookingModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="OnlineBookingModel.reserve" Role="reserve" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Customer_Id" />
-            </Principal>
-            <Dependent Role="reserve">
-              <PropertyRef Name="cus_fid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__reserve__out_fid__6477ECF3">
-          <End Type="OnlineBookingModel.Outlet" Role="Outlet" Multiplicity="1" />
-          <End Type="OnlineBookingModel.reserve" Role="reserve" Multiplicity="*" />
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="person_phone" Type="Int32" Nullable="false" />
+          <Property Name="person_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="messages" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Dinetable">
+          <Key>
+            <PropertyRef Name="Dine_Id" />
+          </Key>
+          <Property Name="Dine_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Person_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Person_Number" Type="Int32" Nullable="false" />
+          <Property Name="Dine_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Dine_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Outlet_Bid" Type="Int32" />
+          <NavigationProperty Name="Outlet" Relationship="OnlineBookingModel.FK_Dinetable_Outlet" FromRole="Dinetable" ToRole="Outlet" />
+        </EntityType>
+        <Association Name="FK_Dinetable_Outlet">
+          <End Type="OnlineBookingModel.Outlet" Role="Outlet" Multiplicity="0..1" />
+          <End Type="OnlineBookingModel.Dinetable" Role="Dinetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Outlet">
               <PropertyRef Name="outlet_id" />
             </Principal>
-            <Dependent Role="reserve">
-              <PropertyRef Name="out_fid" />
+            <Dependent Role="Dinetable">
+              <PropertyRef Name="Outlet_Bid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="receiptid" />
+          </Key>
+          <Property Name="receiptid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactNumber" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="orderdetail_id" />
+          </Key>
+          <Property Name="orderdetail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_fid" Type="Int32" Nullable="false" />
+          <Property Name="product_fid" Type="Int32" Nullable="false" />
+          <Property Name="psale_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="pp_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="OnlineBookingModel.FK_orderdetails_Product" FromRole="orderdetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_orderdetails_Product">
+          <End Type="OnlineBookingModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="OnlineBookingModel.orderdetail" Role="orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Prod_Id" />
+            </Principal>
+            <Dependent Role="orderdetail">
+              <PropertyRef Name="product_fid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -498,28 +440,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="OnlineBookingModel.order">
-              <MappingFragment StoreEntitySet="order">
-                <ScalarProperty Name="cus_fid" ColumnName="cus_fid" />
-                <ScalarProperty Name="order_status" ColumnName="order_status" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="orderdetails">
-            <EntityTypeMapping TypeName="OnlineBookingModel.orderdetail">
-              <MappingFragment StoreEntitySet="orderdetails">
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="pp_price" ColumnName="pp_price" />
-                <ScalarProperty Name="psale_price" ColumnName="psale_price" />
-                <ScalarProperty Name="product_fid" ColumnName="product_fid" />
-                <ScalarProperty Name="order_fid" ColumnName="order_fid" />
-                <ScalarProperty Name="orderdetail_id" ColumnName="orderdetail_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Branches">
             <EntityTypeMapping TypeName="OnlineBookingModel.Branch">
               <MappingFragment StoreEntitySet="Branch">
@@ -540,17 +460,61 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="reserves">
-            <EntityTypeMapping TypeName="OnlineBookingModel.reserve">
-              <MappingFragment StoreEntitySet="reserve">
-                <ScalarProperty Name="out_fid" ColumnName="out_fid" />
-                <ScalarProperty Name="cus_fid" ColumnName="cus_fid" />
-                <ScalarProperty Name="persons_count" ColumnName="persons_count" />
-                <ScalarProperty Name="reserve_time" ColumnName="reserve_time" />
-                <ScalarProperty Name="reserve_date" ColumnName="reserve_date" />
-                <ScalarProperty Name="cus_phone" ColumnName="cus_phone" />
-                <ScalarProperty Name="cus_name" ColumnName="cus_name" />
-                <ScalarProperty Name="reserve_id" ColumnName="reserve_id" />
+          <EntitySetMapping Name="Carrers">
+            <EntityTypeMapping TypeName="OnlineBookingModel.Carrer">
+              <MappingFragment StoreEntitySet="Carrer">
+                <ScalarProperty Name="send_resume" ColumnName="send_resume" />
+                <ScalarProperty Name="career_description" ColumnName="career_description" />
+                <ScalarProperty Name="carrer_qualfication" ColumnName="carrer_qualfication" />
+                <ScalarProperty Name="carrer_designation" ColumnName="carrer_designation" />
+                <ScalarProperty Name="career_id" ColumnName="career_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="OnlineBookingModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="messages" ColumnName="messages" />
+                <ScalarProperty Name="person_email" ColumnName="person_email" />
+                <ScalarProperty Name="person_phone" ColumnName="person_phone" />
+                <ScalarProperty Name="person_name" ColumnName="person_name" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dinetables">
+            <EntityTypeMapping TypeName="OnlineBookingModel.Dinetable">
+              <MappingFragment StoreEntitySet="Dinetable">
+                <ScalarProperty Name="Outlet_Bid" ColumnName="Outlet_Bid" />
+                <ScalarProperty Name="Dine_Time" ColumnName="Dine_Time" />
+                <ScalarProperty Name="Dine_Date" ColumnName="Dine_Date" />
+                <ScalarProperty Name="Person_Number" ColumnName="Person_Number" />
+                <ScalarProperty Name="Person_Name" ColumnName="Person_Name" />
+                <ScalarProperty Name="Dine_Id" ColumnName="Dine_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="OnlineBookingModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="receiptid" ColumnName="receiptid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderdetails">
+            <EntityTypeMapping TypeName="OnlineBookingModel.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetails">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="pp_price" ColumnName="pp_price" />
+                <ScalarProperty Name="psale_price" ColumnName="psale_price" />
+                <ScalarProperty Name="product_fid" ColumnName="product_fid" />
+                <ScalarProperty Name="order_fid" ColumnName="order_fid" />
+                <ScalarProperty Name="orderdetail_id" ColumnName="orderdetail_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

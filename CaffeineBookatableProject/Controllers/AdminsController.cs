@@ -20,6 +20,10 @@ namespace CaffeineBookatableProject.Controllers
         {
             return View(db.Customers.ToList());
         }
+        public ActionResult DineList()
+        {
+            return View(db.Dinetables.ToList());
+        }
 
         public ActionResult LogIn()
         {
@@ -35,7 +39,7 @@ namespace CaffeineBookatableProject.Controllers
             }
             else
             {
-                Response.Write("<script>alert('Invalid Username/Password'); </script>");
+                //Response.Write("<script>alert('Invalid Username/Password'); </script>");
                 return View();
             }
         }
