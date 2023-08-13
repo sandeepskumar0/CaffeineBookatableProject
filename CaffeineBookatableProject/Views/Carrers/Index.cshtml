@@ -1,63 +1,46 @@
 ﻿@model IEnumerable<CaffeineBookatableProject.Models.Carrer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Job Openings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="inner_page_head">
-    <div class="container_fuild">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="full">
-                    <h3>Job Openings</h3>
-                </div>
+                <h3 class="page_title">Job Openings</h3>
             </div>
         </div>
     </div>
 </section>
-<br /><br />
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.carrer_designation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.carrer_qualfication)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.career_description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.send_resume)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.carrer_designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.carrer_qualfication)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.career_description)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.send_resume)*@
-            <a href="mailto:cafebrewindia@gmail.com" name="send_resume" class="btn btn-outline-danger py-3 px-4">Click Here</a>
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.career_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.career_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.career_id })
-        </td>*@
-    </tr>
-}
-
-</table>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Qualification</th>
+                        <th>Description</th>
+                        <th>Send Resume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.carrer_designation)</td>
+                            <td>@Html.DisplayFor(modelItem => item.carrer_qualfication)</td>
+                            <td>@Html.DisplayFor(modelItem => item.career_description)</td>
+                            <td>
+                                <a href="mailto:cafebrewindia@gmail.com" class="btn btn-danger py-2 px-3">Apply Now</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

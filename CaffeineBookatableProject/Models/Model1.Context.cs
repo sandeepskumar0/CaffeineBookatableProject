@@ -36,5 +36,6 @@ namespace CaffeineBookatableProject.Models
         public virtual DbSet<Dinetable> Dinetables { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<orderdetail> orderdetails { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

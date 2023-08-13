@@ -115,6 +115,18 @@
           <Property Name="Prod_Pic" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Cat_Fid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Dinetable_Outlet">
           <End Role="Outlet" Type="Self.Outlet" Multiplicity="0..1" />
           <End Role="Dinetable" Type="Self.Dinetable" Multiplicity="*" />
@@ -175,6 +187,7 @@
           <EntitySet Name="Outlet" EntityType="Self.Outlet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Dinetable_Outlet" Association="Self.FK_Dinetable_Outlet">
             <End Role="Outlet" EntitySet="Outlet" />
             <End Role="Dinetable" EntitySet="Dinetable" />
@@ -244,6 +257,7 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="orderdetail" EntitySet="orderdetails" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="OnlineBookingModel.User" />
           </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -391,6 +405,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -515,6 +541,19 @@
                 <ScalarProperty Name="product_fid" ColumnName="product_fid" />
                 <ScalarProperty Name="order_fid" ColumnName="order_fid" />
                 <ScalarProperty Name="orderdetail_id" ColumnName="orderdetail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OnlineBookingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+                <ScalarProperty Name="User_Contact" ColumnName="User_Contact" />
+                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FirstName" ColumnName="User_FirstName" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

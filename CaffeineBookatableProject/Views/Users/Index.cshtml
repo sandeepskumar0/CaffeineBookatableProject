@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CaffeineBookatableProject.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        /* Additional custom styles */
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            background-color: #ffffff;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h2>Users</h2></center>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.User_FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.User_LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.User_Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.User_Contact)</td>
+                        <td>@Html.DisplayFor(modelItem => item.User_Address)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.User_Id }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Details", "Details", new { id = item.User_Id }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.User_Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

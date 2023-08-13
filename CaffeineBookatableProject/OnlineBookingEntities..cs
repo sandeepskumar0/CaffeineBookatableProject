@@ -21,6 +21,7 @@ namespace CaffeineBookatableProject
         public DbSet<contact> contacts { get; set; }
         public DbSet<Carrer> Carrers { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
     }

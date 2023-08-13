@@ -84,9 +84,9 @@ body{
     margin: auto;
     text-align: left;
 }
-label, input[type="text"],input[type="submit"]{
+label, input[type="text"],input[type="submit"] {
     display: block;
-	    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 input[type="text"] {
     outline: 0;
@@ -96,8 +96,10 @@ input[type="text"] {
     /* background-color: rgba(31, 248, 255, 0.59); */
     background-color: rgba(87, 102, 103, 0.59);
     color: white;
-	width: 90%;
-	letter-spacing: 1px;
+    width: 90%;
+    letter-spacing: 1px;
+}
+etter-spacing: 1px;
 }
 .agile-login h1 {
     text-align: center;

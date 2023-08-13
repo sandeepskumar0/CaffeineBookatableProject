@@ -4,30 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Branch List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.branch_name)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Branch Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.branch_name)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.branch_id }, new { @class = "btn btn-primary btn-sm", title = "Edit" })
+                        <span class="btn-separator">|</span>
+                        @Html.ActionLink("Details", "Details", new { id = item.branch_id }, new { @class = "btn btn-info btn-sm", title = "Details" })
+                        <span class="btn-separator">|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.branch_id }, new { @class = "btn btn-danger btn-sm", title = "Delete" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.branch_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.branch_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.branch_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.branch_id })
-        </td>
-    </tr>
-}
 
-</table>

@@ -11,20 +11,14 @@ namespace CaffeineBookatableProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Customer
     {
         public int Customer_Id { get; set; }
-
         public string Customer_FirstName { get; set; }
         public string Customer_LastName { get; set; }
         public string Customer_Email { get; set; }
-        [Required(ErrorMessage = " User Email is Required")]
-        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Customer_Password { get; set; }
-        [Required(ErrorMessage = " User Password is Required")]
-        [EmailAddress(ErrorMessage = "Invalid Password")]
         public string Customer_Contact { get; set; }
         public string Customer_Address { get; set; }
     }

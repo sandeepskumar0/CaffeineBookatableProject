@@ -3,16 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
-    <center><h4 style="font-family:'Times New Roman', Times, serif">Categories List</h4></center><hr /><br />
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <center>
+        <h4 style="font-family:'Times New Roman', Times, serif">Categories List</h4>
+    </center>
+    <hr />
+    <br />
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cat_Name)
+                Category
             </th>
             <th></th>
         </tr>
@@ -24,12 +28,16 @@
                     @Html.DisplayFor(modelItem => item.Cat_Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Cat_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Cat_Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Cat_Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Cat_Id }, new { @class = "btn btn-primary", title = "Edit" })
+                    <span class="btn-separator">|</span>
+                    @Html.ActionLink("Details", "Details", new { id = item.Cat_Id }, new { @class = "btn btn-info", title = "Details" })
+                    <span class="btn-separator">|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Cat_Id }, new { @class = "btn btn-danger", title = "Delete" })
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
+

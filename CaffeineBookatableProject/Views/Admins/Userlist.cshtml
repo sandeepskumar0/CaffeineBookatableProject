@@ -1,64 +1,45 @@
 ﻿@model IEnumerable<CaffeineBookatableProject.Models.Customer>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-<center><h4 style="font-family:'Times New Roman', Times, serif">Users List</h4></center><hr /><br />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_Address)
-        </th>
-        <th></th>
-    </tr>
+<center>
+    <h4 style="font-family:'Times New Roman', Times, serif">Users List</h4>
+</center>
+<hr />
+<br />
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Address</th>
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_Contact)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer_Address)</td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Customer_Id }, new { @class = "btn btn-primary btn-sm", title = "Edit" })
+                        <span class="btn-separator">|</span>
+                        @Html.ActionLink("Details", "Details", new { id = item.Customer_Id }, new { @class = "btn btn-info btn-sm", title = "Details" })
+                        <span class="btn-separator">|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Customer_Id }, new { @class = "btn btn-danger btn-sm", title = "Delete" })
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_Address)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
-}
 
-</table>
+

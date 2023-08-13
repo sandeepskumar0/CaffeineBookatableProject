@@ -1,43 +1,10 @@
-﻿@*@model IEnumerable<CaffeineBookatableProject.Models.Customer>
-    @{
+﻿@model IEnumerable<CaffeineBookatableProject.Models.User>
 
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
-    @using (Html.BeginForm("LogIn", "Customers"))
-    {
-        @Html.AntiForgeryToken()
-
-            <form>
-                <center>
-                    <h4>Sign In</h4>
-                </center>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Customer_Email">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="Customer_Password">
-        </div>
-
-        <button type="submit" class="btn btn-danger" value="Log In">Log In</button>
-        <div>
-            @Html.ActionLink("if you are not a user Signup ", "Signup")
-        </div>
-        </form>
-
-    }*@
-@model IEnumerable<CaffeineBookatableProject.Models.Customer>
 @{
-
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@{
 
-    Layout = null;
-}*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,9 +26,29 @@
 
 </head>
 <body>
-    @using (Html.BeginForm("LogIn", "Customers"))
+    @using (Html.BeginForm("LogIn", "Users"))
     {
         @Html.AntiForgeryToken()
+
+        @*<form>
+                <center>
+                    <h4>Sign In</h4>
+                </center>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="User_Email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="User_Password">
+                </div>
+
+                <button type="submit" class="btn btn-danger" value="Log In">Log In</button>
+                <div>
+                    @Html.ActionLink("if you are not a user Signup ", "SignUp")
+                </div>
+            </form>*@
         <div class="agile-login">
             @*<h1> Login Form</h1>*@
             <div class="wrapper">
@@ -69,9 +56,9 @@
                 <div class="w3ls-form">
                     <form action="/" method="post">
                         <label>Username</label>
-                        <input type="text" name="Customer_Email" placeholder="Username" required />
+                        <input type="text" name="User_Email" placeholder="Email" required />
                         <label>Password</label>
-                        <input type="text" name="Customer_Password" placeholder="Password" required />
+                        <input type="text" name="User_Password" placeholder="Password" required />
                         <a href="@Url.Action("Signup","Customers")" class="pass">Signup ?</a>
                         <input type="submit" value="Log In" />
                     </form>
@@ -88,6 +75,7 @@
                 <p>© 2023 Cafe Brew Login. All rights reserved | Design by <a href="www.w3layouts.com">Cafe Brew Project</a></p>
             </div>
         </div>
+
     }
-</body>
+    </body>
 </html>

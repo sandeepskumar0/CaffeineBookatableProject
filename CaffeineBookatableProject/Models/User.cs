@@ -12,15 +12,14 @@ namespace CaffeineBookatableProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Dinetable
+    public partial class User 
     {
-        public int Dine_Id { get; set; }
-        public string Person_Name { get; set; }
-        public int Person_Number { get; set; }
-        public System.DateTime Dine_Date { get; set; }
-        public System.TimeSpan Dine_Time { get; set; }
-        public Nullable<int> Outlet_Bid { get; set; }
-    
-        public virtual Outlet Outlet { get; set; }
+        public int User_Id { get; set; }
+        public string User_FirstName { get; set; }
+        public string User_LastName { get; set; }
+        public string User_Email { get; set; }
+        public string User_Password { get; set; }
+        public string User_Contact { get; set; }
+        public string User_Address { get; set; }
     }
 }

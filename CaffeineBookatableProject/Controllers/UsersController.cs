@@ -10,27 +10,26 @@ using CaffeineBookatableProject.Models;
 
 namespace CaffeineBookatableProject.Controllers
 {
-    public class CustomersController : Controller
+    public class UsersController : Controller
     {
-        //private OnlineBookingEntities db = new OnlineBookingEntities();
         private OnlineBookingEntities db = new OnlineBookingEntities();
 
-        // GET: Customers
-        //public ActionResult LogIn()
-        //{
-        //    return View(db.Customers.ToList());
-        //}
-
+        // GET: Users
+        public ActionResult Index()
+        {
+            return View(db.Users.ToList());
+        }
         public ActionResult LogIn()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult LogIn(Customer c)
+     
+        public ActionResult LogIn(User c)
         {
-            var cust= db.Customers.Where(x=> x.Customer_Email == c.Customer_Email && x.Customer_Password == c.Customer_Password).Count();
-            var id = db.Customers.Where(x => x.Customer_Email == c.Customer_Email && x.Customer_Password == c.Customer_Password).Select(v=>v.Customer_Id).FirstOrDefault();
-            var idd = db.Customers.FirstOrDefault(x => x.Customer_Email == c.Customer_Email && x.Customer_Password == c.Customer_Password);
+            var cust = db.Users.Where(x => x.User_Email == c.User_Email && x.User_Password == c.User_Password).Count();
+            var id = db.Users.Where(x => x.User_Email == c.User_Email && x.User_Password == c.User_Password).Select(v => v.User_Id).FirstOrDefault();
+            var idd = db.Users.FirstOrDefault(x => x.User_Email == c.User_Email && x.User_Password == c.User_Password);
             Session["CID"] = id;
             Session["CIDD"] = idd;
             if (cust > 0)
@@ -41,7 +40,7 @@ namespace CaffeineBookatableProject.Controllers
             }
             else
             {
-                
+
                 return View();
             }
         }
@@ -51,98 +50,97 @@ namespace CaffeineBookatableProject.Controllers
             Session["ID"] = null;
             return RedirectToAction("Index", "Home");
         }
-        // GET: Customers/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(user);
         }
 
-        // GET: Customers/Create
+        // GET: Users/Create
         public ActionResult SignUp()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "Customer_Id,Customer_FirstName,Customer_LastName,Customer_Email,Customer_Password,Customer_Contact,Customer_Address")] Customer customer)
+        public ActionResult SignUp([Bind(Include = "User_Id,User_FirstName,User_LastName,User_Email,User_Password,User_Contact,User_Address")] User user)
         {
-            
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
+                db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("LogIn","Customers");
+                return RedirectToAction("LogIn","Users");
             }
 
-            return View(customer);
+            return View(user);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(user);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Customer_Id,Customer_FirstName,Customer_LastName,Customer_Email,Customer_Password,Customer_Contact,Customer_Address")] Customer customer)
+        public ActionResult Edit([Bind(Include = "User_Id,User_FirstName,User_LastName,User_Email,User_Password,User_Contact,User_Address")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(user);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(user);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

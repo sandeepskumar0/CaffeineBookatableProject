@@ -54,7 +54,7 @@ namespace CaffeineBookatableProject.Controllers
             {
                 db.Dinetables.Add(dinetable);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("");
             }
 
             ViewBag.Outlet_Bid = new SelectList(db.Outlets, "outlet_id", "outlet_name", dinetable.Outlet_Bid);

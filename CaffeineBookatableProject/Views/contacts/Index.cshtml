@@ -8,19 +8,19 @@
 
 <h2>Contact List</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.person_name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.person_phone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.person_email)
+            Email
         </th>
         <th>
             @Html.DisplayNameFor(model => model.messages)
@@ -44,9 +44,13 @@
                 @Html.DisplayFor(modelItem => item.messages)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.person_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.person_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.person_id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.person_id }, new { @class = "btn btn-primary" })
+                <span class="btn-separator">|</span>
+                @Html.ActionLink("Details", "Details", new { id = item.person_id }, new { @class = "btn btn-info" })
+                <span class="btn-separator">|</span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.person_id }, new { @class = "btn btn-danger" })
+             
+
             </td>
         </tr>
     }
