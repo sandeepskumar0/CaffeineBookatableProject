@@ -12,7 +12,7 @@ namespace CaffeineBookatableProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User 
+    public partial class User
     {
         public int User_Id { get; set; }
         public string User_FirstName { get; set; }

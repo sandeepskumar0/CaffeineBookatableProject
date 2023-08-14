@@ -27,10 +27,11 @@ namespace CaffeineBookatableProject.Models
         public string Purchase_Price { get; set; }
         public string Sale_Price { get; set; }
         public string Prod_Pic { get; set; }
-        public HttpPostedFileBase Pro_Pic { get; set; }
-        public int Cat_Fid { get; set; }
         public int PRO_QUANTITY { get; set; }
+        public HttpPostedFileBase Pro_Pic { get; set; }
 
+        public int Cat_Fid { get; set; }
+    
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderdetail> orderdetails { get; set; }
