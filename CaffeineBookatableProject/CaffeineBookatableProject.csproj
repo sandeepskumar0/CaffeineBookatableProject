@@ -142,6 +142,7 @@
     <Compile Include="Controllers\contactsController.cs" />
     <Compile Include="Controllers\DinetablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobresponsController.cs" />
     <Compile Include="Controllers\OutletsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -156,6 +157,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dinetable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Jobrespons.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\orderdetail.cs">
@@ -871,12 +875,18 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\LogIn.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Jobrespons\Create.cshtml" />
+    <Content Include="Views\Jobrespons\Delete.cshtml" />
+    <Content Include="Views\Jobrespons\Details.cshtml" />
+    <Content Include="Views\Jobrespons\Edit.cshtml" />
+    <Content Include="Views\Jobrespons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\images\" />
     <Folder Include="OutPic\" />
     <Folder Include="ProPic\" />
+    <Folder Include="Resumes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

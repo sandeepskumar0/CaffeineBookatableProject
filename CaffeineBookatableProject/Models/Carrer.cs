@@ -14,10 +14,19 @@ namespace CaffeineBookatableProject.Models
     
     public partial class Carrer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Carrer()
+        {
+            this.Jobresponses = new HashSet<Jobrespons>();
+        }
+    
         public int career_id { get; set; }
         public string carrer_designation { get; set; }
         public string carrer_qualfication { get; set; }
         public string career_description { get; set; }
         public string send_resume { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Jobrespons> Jobresponses { get; set; }
     }
 }

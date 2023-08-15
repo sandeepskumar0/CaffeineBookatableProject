@@ -27,9 +27,8 @@ namespace CaffeineBookatableProject.Models
         public string Purchase_Price { get; set; }
         public string Sale_Price { get; set; }
         public string Prod_Pic { get; set; }
-        public int PRO_QUANTITY { get; set; }
         public HttpPostedFileBase Pro_Pic { get; set; }
-
+        public int PRO_QUANTITY { get; set; }
         public int Cat_Fid { get; set; }
     
         public virtual Category Category { get; set; }

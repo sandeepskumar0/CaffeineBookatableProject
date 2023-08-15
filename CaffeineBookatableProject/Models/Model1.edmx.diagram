@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="31347501f63a443f81195cc428c2750a" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="OnlineBookingModel.Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Customer" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Admin" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Customer" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineBookingModel.Category" Width="1.5" PointX="0.75" PointY="5.5" />
         <EntityTypeShape EntityType="OnlineBookingModel.Product" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="OnlineBookingModel.FK_Product_Category" />
         <EntityTypeShape EntityType="OnlineBookingModel.Branch" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="OnlineBookingModel.Outlet" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="OnlineBookingModel.FK_Outlet_Branch" />
-        <EntityTypeShape EntityType="OnlineBookingModel.Carrer" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Carrer" Width="1.5" PointX="7.75" PointY="1" />
         <EntityTypeShape EntityType="OnlineBookingModel.contact" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="OnlineBookingModel.Dinetable" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="OnlineBookingModel.FK_Dinetable_Outlet" />
@@ -21,6 +21,8 @@
         <EntityTypeShape EntityType="OnlineBookingModel.orderdetail" Width="1.5" PointX="5.25" PointY="5.125" />
         <AssociationConnector Association="OnlineBookingModel.FK_orderdetails_Product" />
         <EntityTypeShape EntityType="OnlineBookingModel.User" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="OnlineBookingModel.Jobrespons" Width="1.5" PointX="10" PointY="1" />
+        <AssociationConnector Association="OnlineBookingModel.FK_Jobresponses_Carrer" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,63 +5,71 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User_FirstName)
-        </dt>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>User Details</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        User Firstname
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_FirstName)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.User_FirstName)
-        </dd>
+                    <dt class="col-sm-3">
+                       User Lastname
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_LastName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User_LastName)
-        </dt>
+                    <dt class="col-sm-3">
+                       User Email
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_Email)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.User_LastName)
-        </dd>
+                    <dt class="col-sm-3">
+                        User Password
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_Password)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User_Email)
-        </dt>
+                    <dt class="col-sm-3">
+                        Contact Number
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_Contact)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.User_Email)
-        </dd>
+                    <dt class="col-sm-3">
+                        Address
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.User_Address)
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.User_Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User_Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User_Contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_Contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User_Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_Address)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.User_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

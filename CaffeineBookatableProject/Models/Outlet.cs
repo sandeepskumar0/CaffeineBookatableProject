@@ -26,9 +26,9 @@ namespace CaffeineBookatableProject.Models
         public string outlet_disc { get; set; }
         public string outlet_location { get; set; }
         public string outlet_pic { get; set; }
-        public Nullable<int> branch_fid { get; set; }
-        
         public HttpPostedFileBase outle_pic { get; set; }
+        public Nullable<int> branch_fid { get; set; }
+    
         public virtual Branch Branch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dinetable> Dinetables { get; set; }

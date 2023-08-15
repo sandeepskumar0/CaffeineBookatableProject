@@ -70,6 +70,17 @@
           <Property Name="Dine_Time" Type="time" Precision="7" Nullable="false" />
           <Property Name="Outlet_Bid" Type="int" />
         </EntityType>
+        <EntityType Name="Jobresponses">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Job_Position" Type="int" Nullable="false" />
+          <Property Name="Resume" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="orderdetails">
           <Key>
             <PropertyRef Name="orderdetail_id" />
@@ -139,6 +150,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Jobresponses_Carrer">
+          <End Role="Carrer" Type="Self.Carrer" Multiplicity="1" />
+          <End Role="Jobresponses" Type="Self.Jobresponses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrer">
+              <PropertyRef Name="career_id" />
+            </Principal>
+            <Dependent Role="Jobresponses">
+              <PropertyRef Name="Job_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_orderdetails_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
@@ -183,6 +206,7 @@
           <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dinetable" EntityType="Self.Dinetable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobresponses" EntityType="Self.Jobresponses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Outlet" EntityType="Self.Outlet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
@@ -191,6 +215,10 @@
           <AssociationSet Name="FK_Dinetable_Outlet" Association="Self.FK_Dinetable_Outlet">
             <End Role="Outlet" EntitySet="Outlet" />
             <End Role="Dinetable" EntitySet="Dinetable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobresponses_Carrer" Association="Self.FK_Jobresponses_Carrer">
+            <End Role="Carrer" EntitySet="Carrer" />
+            <End Role="Jobresponses" EntitySet="Jobresponses" />
           </AssociationSet>
           <AssociationSet Name="FK_orderdetails_Product" Association="Self.FK_orderdetails_Product">
             <End Role="Product" EntitySet="Product" />
@@ -258,6 +286,11 @@
             <End Role="orderdetail" EntitySet="orderdetails" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="OnlineBookingModel.User" />
+          <EntitySet Name="Jobresponses" EntityType="OnlineBookingModel.Jobrespons" />
+          <AssociationSet Name="FK_Jobresponses_Carrer" Association="OnlineBookingModel.FK_Jobresponses_Carrer">
+            <End Role="Carrer" EntitySet="Carrers" />
+            <End Role="Jobrespons" EntitySet="Jobresponses" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -335,6 +368,7 @@
           <Property Name="carrer_qualfication" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="career_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="send_resume" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jobresponses" Relationship="OnlineBookingModel.FK_Jobresponses_Carrer" FromRole="Carrer" ToRole="Jobrespons" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -417,6 +451,30 @@
           <Property Name="User_Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Jobrespons">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Job_Position" Type="Int32" Nullable="false" />
+          <Property Name="Resume" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carrer" Relationship="OnlineBookingModel.FK_Jobresponses_Carrer" FromRole="Jobrespons" ToRole="Carrer" />
+        </EntityType>
+        <Association Name="FK_Jobresponses_Carrer">
+          <End Type="OnlineBookingModel.Carrer" Role="Carrer" Multiplicity="1" />
+          <End Type="OnlineBookingModel.Jobrespons" Role="Jobrespons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrer">
+              <PropertyRef Name="career_id" />
+            </Principal>
+            <Dependent Role="Jobrespons">
+              <PropertyRef Name="Job_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -554,6 +612,18 @@
                 <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
                 <ScalarProperty Name="User_FirstName" ColumnName="User_FirstName" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobresponses">
+            <EntityTypeMapping TypeName="OnlineBookingModel.Jobrespons">
+              <MappingFragment StoreEntitySet="Jobresponses">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Job_Position" ColumnName="Job_Position" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

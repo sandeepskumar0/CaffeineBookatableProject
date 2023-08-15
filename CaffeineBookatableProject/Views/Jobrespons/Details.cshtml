@@ -1,0 +1,72 @@
+﻿@model CaffeineBookatableProject.Models.Jobrespons
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Job Responsibilities</h4>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Resume)
+                            </dt>
+                            <dd class="col-sm-8">
+                                <a href="@Url.Content(Model.Resume)" class="btn btn-success">Download Resume</a>
+                            </dd>
+
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Phone)
+                            </dd>
+
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Carrer.carrer_designation)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Carrer.carrer_designation)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

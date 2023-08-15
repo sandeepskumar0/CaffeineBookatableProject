@@ -4,65 +4,77 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ">
-    <h2>Details</h2>
 
-    <div>
-        <h4>Product</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Prod_Name)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Prod_Name)
-            </dd>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-lg-10 main">
+                <h2>Details</h2>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Prod_Disc)
-            </dt>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Product</h4>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">
+                                Product
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Prod_Name)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Prod_Disc)
-            </dd>
+                            <dt class="col-sm-3">
+                                Description
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Prod_Disc)
+                            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Purchase_Price)
-            </dt>
+                            <dt class="col-sm-3">
+                               Purchase Price
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Purchase_Price)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Purchase_Price)
-            </dd>
+                            <dt class="col-sm-3">
+                               Sales Price
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Sale_Price)
+                            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Sale_Price)
-            </dt>
+                            <dt class="col-sm-3">
+                               Picture
+                            </dt>
+                            <dd class="col-sm-9">
+                                <img src="@Url.Content(Model.Prod_Pic)" class="img-fluid" height:"100px;" />
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Sale_Price)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Prod_Pic)
-            </dt>
-
-            <dd>
-                <img src="@Url.Content(Model.Prod_Pic)" width="60px" />
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Category.Cat_Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Category.Cat_Name)
-            </dd>
-
-        </dl>
+                            <dt class="col-sm-3">
+                                Category
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Category.Cat_Name)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Prod_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Prod_Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
- </div>
+</body>
+</html>
